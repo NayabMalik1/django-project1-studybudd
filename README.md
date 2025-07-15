@@ -1,24 +1,24 @@
-# 💬 **StudyBudd — Django Web App**
+#  **StudyBudd — Django Web App**
 
 StudyBudd is a Django-based discussion app where users can explore rooms, join topics, and collaborate by posting messages. Admins can manage users, topics, and messages.
 
 ---
 
-## 🚀 Features
+##  Features
 
 | Feature                | Description                                                                                   | Link (Localhost)                                |
 |------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------|
-| 🏠 Home Page           | Displays all rooms with titles and links to details                                           | [http://127.0.0.1:8000/](http://127.0.0.1:8000/) |
-| 🔍 Room Detail Page    | Shows specific room name and messages                                                        | `/room/<id>/`                                   |
-| ➕ Create Room         | Add new discussion rooms using Django forms                                                   | [http://127.0.0.1:8000/create-room/](http://127.0.0.1:8000/create-room/) |
-| 🔐 Admin Panel         | Full Django admin panel for managing users, rooms, and messages                              | [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) |
-| 🧾 Admin → Messages    | Admin CRUD interface for managing all messages                                                | [http://127.0.0.1:8000/admin/base/message/](http://127.0.0.1:8000/admin/base/message/) |
+|  Home Page           | Displays all rooms with titles and links to details                                           | [http://127.0.0.1:8000/](http://127.0.0.1:8000/) |
+|  Room Detail Page    | Shows specific room name and messages                                                        | `/room/<id>/`                                   |
+|  Create Room         | Add new discussion rooms using Django forms                                                   | [http://127.0.0.1:8000/create-room/](http://127.0.0.1:8000/create-room/) |
+|  Admin Panel         | Full Django admin panel for managing users, rooms, and messages                              | [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) |
+|  Admin → Messages    | Admin CRUD interface for managing all messages                                                | [http://127.0.0.1:8000/admin/base/message/](http://127.0.0.1:8000/admin/base/message/) |
 | 👤 Admin → Users       | Admin interface for user management                                                           | [http://127.0.0.1:8000/admin/auth/user/](http://127.0.0.1:8000/admin/auth/user/) |
-| 🧩 Template Structure  | `main.html`, `navbar.html`, `home.html`, `room.html`, `room_form.html`                        | (Base Template Inheritance)                     |
+|  Template Structure  | `main.html`, `navbar.html`, `home.html`, `room.html`, `room_form.html`                        | (Base Template Inheritance)                     |
 
 ---
 
-## 🛠️ How to Run This Project Locally
+##  How to Run This Project Locally
 
 ### 🔹 Step 1: Clone the repository
 
