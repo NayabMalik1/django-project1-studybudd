@@ -1,49 +1,76 @@
 
-### 🔐 **Feature: User Authentication & Access Control**
 
-This feature secures the platform by allowing only registered users to create, update, and delete rooms, and ensures users can only manage their own content.
+## 🔐 **Feature: User Authentication & Registration**
 
-#### ✅ **Implemented Functionalities:**
+This feature adds full authentication support using Django's built-in user model. It allows users to register, log in, log out, and restricts access to certain actions like room creation and editing to authenticated users only.
 
-* **User Login:**
+---
 
-  * Handled by the `loginPage` view.
-  * Uses Django’s `authenticate()` function to validate credentials.
-  * Displays error messages for invalid logins using Django's `messages` framework.
+### ✅ **Implemented Functionalities**
 
-* **User Logout:**
+#### 🔑 **User Login**
 
-  * Handled by the `logoutUser` view.
-  * Redirects to the homepage after successful logout.
+* **View:** `loginPage`
+* **Mechanism:** Uses `authenticate()` and `login()` from `django.contrib.auth`
+* **Error Handling:** Invalid credentials show proper error via `messages.error()`
+* **Redirect:** On success, redirects to home page
 
-* **Access Restrictions:**
+#### 🚪 **User Logout**
 
-  * Only authenticated users can:
+* **View:** `logoutUser`
+* **Mechanism:** Uses Django’s `logout()` method
+* **Redirect:** Returns to home page after logging out
 
-    * ✅ Create rooms
-    * ✅ Update their own rooms
-    * ✅ Delete their own rooms
-  * Unauthenticated users are redirected to the login page.
-  * Users cannot modify rooms created by other users.
+#### 📝 **User Registration**
 
-* **Authorization Logic:**
+* **View:** `registerPage`
+* **Mechanism:** Uses Django’s `UserCreationForm` and `save()` to register new users
+* **Validation:** Checks if username already exists
+* **Login on Success:** Automatically logs in the user after registration
+* **Redirect:** Redirects to home page
 
-  * Secured views with `@login_required(login_url='login')`.
-  * Checked user permissions before allowing edits/deletions:
+#### 🔐 **Access Control**
 
-    ```python
-    if request.user != room.host:
-        return HttpResponse('You are not allowed here!')
-    ```
+* **Protected Views:** `@login_required(login_url='login')` used for:
 
-#### 📄 **Associated Templates:**
+  * Creating a room
+  * Updating a room
+  * Deleting a room
+* **Authorization Check:** Users can only update/delete their own rooms:
 
-* `login_register.html` — login form interface
-* `navbar.html` — shows login/logout links based on session
-* `room_form.html` — used for both creating and updating rooms
-* `delete.html` — confirmation prompt for deleting rooms
+  ```python
+  if request.user != room.host:
+      return HttpResponse("You are not allowed here!")
+  ```
 
-#### 🔐 **Security Benefits:**
+---
 
-* Prevents unauthorized access and modifications.
-* Encourages user accountability by enforcing content ownership.
+### 📄 **Templates Modified or Created**
+
+| Template File         | Purpose                                                               |
+| --------------------- | --------------------------------------------------------------------- |
+| `login_register.html` | Combined login & registration form                                    |
+| `navbar.html`         | Shows "Login", "Logout", and user info dynamically                    |
+| `room_form.html`      | Used for both creating and updating rooms (restricted to owners only) |
+| `delete.html`         | Delete confirmation restricted to the room owner                      |
+
+---
+
+### 🔐 **Security **
+
+* ✅ Only logged-in users can manage rooms
+* ✅ Passwords securely stored using Django's auth system
+* ✅ Prevents unauthorized content access and editing
+* ✅ Auto-login after registration for smoother user experience
+
+---
+
+### 🌐 **Related URLs for Testing (Localhost)**
+
+| URL                                                   | Description                  |
+| ----------------------------------------------------- | ---------------------------- |
+| [`/login/`](http://127.0.0.1:8000/login/)             | User login                   |
+| [`/logout/`](http://127.0.0.1:8000/logout/)           | User logout                  |
+| [`/register/`](http://127.0.0.1:8000/register/)       | New user registration        |
+| [`/create-room/`](http://127.0.0.1:8000/create-room/) | Create room (login required) |
+
