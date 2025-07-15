@@ -1,14 +1,10 @@
-
-
-
-````markdown
-###  StudyBudd — Django Web App
+# 💬 **StudyBudd — Django Web App**
 
 StudyBudd is a Django-based discussion app where users can explore rooms, join topics, and collaborate by posting messages. Admins can manage users, topics, and messages.
 
 ---
 
-### 🚀 Features
+## 🚀 Features
 
 | Feature                | Description                                                                                   | Link (Localhost)                                |
 |------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------|
@@ -29,7 +25,7 @@ StudyBudd is a Django-based discussion app where users can explore rooms, join t
 ```bash
 git clone https://github.com/NayabMalik1/django-project1-studybudd.git
 cd studybudd
-````
+
 
 ### 🔹 Step 2: Create Virtual Environment (if not already)
 
