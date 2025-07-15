@@ -1,23 +1,14 @@
-Zaroor Nayab! 👏
-Neeche tumhare Django project (`studybudd`) ke liye **professional-style README.md** hai — jismein:
 
-✅ Har feature ka description
-✅ Localhost links (jaise `127.0.0.1:8000/admin`)
-✅ Project run karne ka complete process
-✅ File structure overview
 
----
-
-### ✅ `README.md` for `studybudd` Django Project
 
 ````markdown
-# 💬 StudyBudd — Django Web App
+###  StudyBudd — Django Web App
 
 StudyBudd is a Django-based discussion app where users can explore rooms, join topics, and collaborate by posting messages. Admins can manage users, topics, and messages.
 
 ---
 
-## 🚀 Features
+### 🚀 Features
 
 | Feature                | Description                                                                                   | Link (Localhost)                                |
 |------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------|
