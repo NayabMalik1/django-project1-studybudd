@@ -16,3 +16,4 @@ This feature enhances room interaction by:
 - Users must be logged in to post comments.
 - All messages are stored in the `Message` model and displayed in the room.
 
+
