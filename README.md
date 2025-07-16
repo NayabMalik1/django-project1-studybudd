@@ -1,76 +1,45 @@
 
+## **Comment Feature — Room Conversations in Real Time**
 
-## 🔐 **Feature: User Authentication & Registration**
+This feature enables users to engage in discussions within individual rooms by posting and viewing messages in a clean and organized format.
 
-This feature adds full authentication support using Django's built-in user model. It allows users to register, log in, log out, and restricts access to certain actions like room creation and editing to authenticated users only.
+###  Key Highlights
 
----
+* Displays a room’s **title and description**.
+* Shows a list of all comments/messages posted in the room.
+* Each message displays:
 
-### ✅ **Implemented Functionalities**
-
-#### 🔑 **User Login**
-
-* **View:** `loginPage`
-* **Mechanism:** Uses `authenticate()` and `login()` from `django.contrib.auth`
-* **Error Handling:** Invalid credentials show proper error via `messages.error()`
-* **Redirect:** On success, redirects to home page
-
-#### 🚪 **User Logout**
-
-* **View:** `logoutUser`
-* **Mechanism:** Uses Django’s `logout()` method
-* **Redirect:** Returns to home page after logging out
-
-#### 📝 **User Registration**
-
-* **View:** `registerPage`
-* **Mechanism:** Uses Django’s `UserCreationForm` and `save()` to register new users
-* **Validation:** Checks if username already exists
-* **Login on Success:** Automatically logs in the user after registration
-* **Redirect:** Redirects to home page
-
-#### 🔐 **Access Control**
-
-* **Protected Views:** `@login_required(login_url='login')` used for:
-
-  * Creating a room
-  * Updating a room
-  * Deleting a room
-* **Authorization Check:** Users can only update/delete their own rooms:
-
-  ```python
-  if request.user != room.host:
-      return HttpResponse("You are not allowed here!")
-  ```
+  * The **username** of the sender.
+  * The **relative timestamp** (e.g., `5 minutes ago`).
+  * The **message content**.
+* Fully integrated with Django ORM using reverse model relationships.
 
 ---
 
-### 📄 **Templates Modified or Created**
+### 🧩 Tech Stack
 
-| Template File         | Purpose                                                               |
-| --------------------- | --------------------------------------------------------------------- |
-| `login_register.html` | Combined login & registration form                                    |
-| `navbar.html`         | Shows "Login", "Logout", and user info dynamically                    |
-| `room_form.html`      | Used for both creating and updating rooms (restricted to owners only) |
-| `delete.html`         | Delete confirmation restricted to the room owner                      |
+* **Backend:** Django, Python
+* **Frontend:** HTML, Django Templates
+* **Database:** SQLite (can be upgraded to PostgreSQL/MySQL)
+* **Template Filter:** `timesince` from `django.contrib.humanize` for friendly timestamps
 
 ---
 
-### 🔐 **Security **
 
-* ✅ Only logged-in users can manage rooms
-* ✅ Passwords securely stored using Django's auth system
-* ✅ Prevents unauthorized content access and editing
-* ✅ Auto-login after registration for smoother user experience
+
+
+###  Security & Validation
+
+* All messages are associated with authenticated users.
+* Messages are fetched based on the selected room ID (`pk`) ensuring isolation.
 
 ---
 
-### 🌐 **Related URLs for Testing (Localhost)**
+###  Future Enhancements
 
-| URL                                                   | Description                  |
-| ----------------------------------------------------- | ---------------------------- |
-| [`/login/`](http://127.0.0.1:8000/login/)             | User login                   |
-| [`/logout/`](http://127.0.0.1:8000/logout/)           | User logout                  |
-| [`/register/`](http://127.0.0.1:8000/register/)       | New user registration        |
-| [`/create-room/`](http://127.0.0.1:8000/create-room/) | Create room (login required) |
+* Live chat using WebSockets (Django Channels).
+* Emoji support and rich-text formatting.
+* Edit/delete functionality for messages.
+* Real-time notifications.
+
 
