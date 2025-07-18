@@ -1,47 +1,102 @@
 
 
-###  **Feature: Theme Customization**
+# **StudyBudd API – REST Framework Integration**
 
-This feature enhances the visual appeal and layout of the StudyBuddy web application by improving the structure, style, and responsiveness of various pages.
+This branch introduces RESTful API support for the **StudyBudd** project using **Django REST Framework (DRF)**. It includes API endpoints for Rooms and related models, enabling seamless integration with frontend apps or third-party services.
 
-#### ✅ **Changes Introduced**
+---
 
-* Refactored HTML templates to align with consistent layout using utility classes.
-* Redesigned **room list**, **recent activity**, and **topic sections** with better spacing and structure.
-* Connected custom `main.css` using `{% static %}` correctly.
-* Used modern design patterns (3-column grid layout) for homepage and profile pages.
-* Improved the mobile menu and avatar structure.
-* Aligned typography and colors for better readability.
+## API Demo
 
-#### 📁 Affected Files
+> Access individual room details:
+> **[`http://127.0.0.1:8000/api/rooms/1/`](http://127.0.0.1:8000/api/rooms/1/)**
+> *(Make sure the server is running locally)*
 
-* `base/home.html`
-* `base/feed_component.html`
-* `base/topics_component.html`
-* `base/navbar.html`
-* `base/profile.html`
-* `static/styles/main.css`
-* `main.html` (template wrapper)
+---
 
-#### 💡 How to Use
+## Branch: `feature/rest-api`
 
-1. Switch to the branch:
+This branch contains the following major additions:
+
+* ✅ Django REST Framework installation and configuration
+* ✅ API views using DRF (`APIView`, `GenericAPIView`, `ModelViewSet`)
+* ✅ URL routing for API endpoints
+* ✅ Serializers for Room and related models
+
+---
+
+## Tech Stack
+
+* **Python 3.12**
+* **Django 5+**
+* **Django REST Framework 3.16**
+* SQLite (default) or switchable to PostgreSQL/MySQL
+
+---
+
+##  Setup Instructions
+
+1. **Clone the repo & switch to API branch**
 
    ```bash
-   git checkout feature/theme-customization
+   git clone https://github.com/NayabMalik1/studybudd.git
+   cd studybudd
+   git checkout -b feature/rest-api
    ```
 
-2. Run your Django server:
+2. **Create and activate virtual environment**
+
+   ```bash
+   python -m venv env
+   .\env\Scripts\activate      # For Windows
+   source env/bin/activate     # For Linux/macOS
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   If `requirements.txt` doesn't exist yet, manually install:
+
+   ```bash
+   pip install django djangorestframework
+   ```
+
+4. **Add to `INSTALLED_APPS` in `settings.py`**
+
+   ```python
+   'rest_framework',
+   ```
+
+5. **Run migrations**
+
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+6. **Start development server**
 
    ```bash
    python manage.py runserver
    ```
 
-3. Visit `http://127.0.0.1:8000/` to see the updated layout and styles.
+7. **Access the API**
+   Open in browser:
+   [http://127.0.0.1:8000/api/rooms/1/](http://127.0.0.1:8000/api/rooms/1/)
 
-#### 📌 Notes
+---
 
-* No backend logic is altered.
-* Only formatting, layout, and static file configuration is updated.
-* Compatible with existing features and routes.
+##  Project Structure (API-related)
 
+
+studybudd/
+├── api/
+│   ├── serializers.py      # DRF Serializers
+│   ├── views.py            # API Views (Class-based)
+│   └── urls.py             # API URLs
+├── studybudd/
+│   └── settings.py         # Add 'rest_framework' to INSTALLED_APPS
+```
